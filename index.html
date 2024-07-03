@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased h-full font-sans bg-gray-100 dark:bg-gray-900">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Reset form fields using AlpineJS & Tailwind CSS</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- @font-face :: Inter -->
+		<link rel="preload" href="https://rsms.me/inter/inter.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+		<noscript><link rel="stylesheet" href="https://rsms.me/inter/inter.css" /></noscript>
+		<!-- Alpine.js -->
+		<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+		<!-- Tailwind CSS -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<!-- Tailwind CSS :: styles -->
+		<style type="text/tailwindcss">
+			@layer base {
+			}
+			@layer components {
+			}
+			@layer utilities {
+			}
+		</style>
+		<!-- Tailwind CSS :: config -->
+		<script>
+			tailwind.config = {
+				theme: {
+					extend: {
+						colors: {},
+					},
+				},
+				darkMode: "media",
+			};
+		</script>
+
+		<div class="grid place-items-center w-full h-screen p-4">
+			<form
+				action=""
+				method=""
+				autocomplete="off"
+				x-data="{ firstName: '', lastName: ''}"
+				@submit.prevent.stop
+				class="w-full max-w-xs mx-auto"
+			>
+				<fieldset
+					class="grid gap-10 px-8 pb-8 pt-6 border rounded-md border-gray-300 dark:border-gray-600 shadow-sm dark:bg-gradient-to-b dark:from-gray-900 dark:via-gray-900 dark:to-gray-800"
+				>
+					<legend class="-ml-4 px-4 font-medium tracking-wide text-gray-600 dark:text-gray-300">
+						User credentials
+					</legend>
+					<div class="space-y-4">
+						<label for="firstName" class="relative block w-full">
+							<span class="font-medium leading-normal text-gray-700 dark:text-gray-200">First name</span>
+							<p class="text-sm text-gray-600 dark:text-gray-400">Enter your first name.</p>
+							<input
+								type="text"
+								id="firstName"
+								name="firstName"
+								x-model="firstName"
+								autocomplete="off"
+								spellcheck="false"
+								class="appearance-none outline-none relative block w-full h-11 mt-2 px-3 py-2.5 text-base leading-normal tracking-wider border rounded transition duration-150 ease-in-out border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-50 bg-white dark:bg-gray-800 focus-visible:ring-inset focus-visible:ring-1 focus-visible:ring-[#1e90ff] dark:focus-visible:ring-[#ffd700] focus-visible:text-gray-700 focus-visible:bg-indigo-50 dark:focus-visible:text-gray-100 dark:focus-visible:bg-indigo-600/10 focus-visible:border-[#1e90ff] dark:focus-visible:border-[#ffd700] focus-visible:shadow-inner hover:border-gray-400 dark:hover:bg-black/5"
+							/>
+						</label>
+						<label for="lastName" class="relative block w-full">
+							<span class="font-medium leading-normal text-gray-700 dark:text-gray-200">Last name</span>
+							<p class="text-sm text-gray-600 dark:text-gray-400">Enter your last name.</p>
+							<input
+								type="text"
+								id="lastName"
+								name="lastName"
+								x-model="lastName"
+								autocomplete="off"
+								spellcheck="false"
+								class="appearance-none outline-none relative block w-full h-11 mt-2 px-3 py-2.5 text-base leading-normal tracking-wider border rounded transition duration-150 ease-in-out border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-50 bg-white dark:bg-gray-800 focus-visible:ring-inset focus-visible:ring-1 focus-visible:ring-[#1e90ff] dark:focus-visible:ring-[#ffd700] focus-visible:text-gray-700 focus-visible:bg-indigo-50 dark:focus-visible:text-gray-100 dark:focus-visible:bg-indigo-600/10 focus-visible:border-[#1e90ff] dark:focus-visible:border-[#ffd700] focus-visible:shadow-inner hover:border-gray-400 dark:hover:bg-black/5"
+							/>
+						</label>
+					</div>
+					<div class="flex justify-end between w-full max-w-xs space-x-2">
+						<button
+							@click="$el.replaceWith($el.cloneNode(true))"
+							type="button"
+							class="group | appearance-none outline-none select-none touch-manipulation inline-flex items-center justify-center min-w-11 w-fit h-11 m-0 px-2 py-2.5 text-sm leading-normal font-semibold text-center normal-case horizontal-tb transition-colors whitespace-nowrap border rounded-md border-gray-300 dark:border-gray-600 text-gray-600 bg-white dark:text-gray-200 dark:bg-transparent focus-visible:z-10 focus-visible:ring-inset focus-visible:ring-2 focus-visible:text-gray-900 focus-visible:bg-gray-50 dark:focus-visible:text-white dark:focus-visible:bg-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 active:shadow-inner active:text-gray-900 active:bg-gray-200 dark:active:text-gray-300 dark:active:bg-gray-800 | no-js:text-gray-200 no-js:bg-gray-700 no-js:focus-visible:text-white no-js:focus-visible:bg-gray-600 no-js:hover:text-white no-js:hover:bg-gray-600 no-js:active:text-gray-300 no-js:active:bg-gray-800"
+						>
+							<span class="px-4">Reset</span>
+						</button>
+						<button
+							@click="console.log(firstName, lastName)"
+							type="button"
+							class="group | appearance-none outline-none select-none touch-manipulation inline-flex items-center justify-center min-w-11 w-fit h-11 m-0 px-2 py-2.5 text-sm leading-normal font-semibold text-center normal-case horizontal-tb transition-colors whitespace-nowrap rounded-md text-gray-50 bg-indigo-600 focus-visible:z-10 focus-visible:ring-inset focus-visible:ring-2 focus-visible:text-white focus-visible:bg-indigo-700 hover:text-white hover:bg-indigo-700 active:shadow-inner active:text-gray-100 active:bg-indigo-800"
+						>
+							<span class="px-4">Send</span>
+						</button>
+					</div>
+				</fieldset>
+				<p class="w-full max-w-xs py-6 font-mono text-xs text-gray-500">
+					Full name: <span x-text="firstName + ' ' + lastName"></span>
+				</p>
+			</form>
+			<!--
+    ========================================
+    Non-essential :: Build-with logos
+    ========================================
+    -->
+			<div class="w-full max-w-[320px] mx-auto">
+				<p class="py-2 text-xs font-mono font-medium text-center lowercase text-gray-600 dark:text-gray-400">
+					Build with
+				</p>
+				<div class="flex items-center justify-between space-y-2 w-full">
+					<svg
+						class="w-auto h-4 fill-gray-700 dark:fill-gray-300"
+						width="192"
+						height="24"
+						viewBox="0 0 262 33"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							fill="#06B6D4"
+							d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z"
+						/>
+						<text
+							x="64"
+							y="30"
+							text-anchor="start"
+							style="
+								font-size: 36px;
+								font-family: Poppins-SemiBold, Poppins;
+								font-weight: 600;
+								letter-spacing: -0.05rem;
+							"
+						>
+							tailwindcss
+						</text>
+					</svg>
+					<svg
+						class="w-auto h-5 fill-gray-600 dark:fill-gray-300"
+						width="148"
+						height="24"
+						viewBox="0 0 148 24"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<rect hidden fill="none" stroke="none" width="148" height="24" />
+						<path fill="#77c1d2" d="M30.46.49l8.7,8.67-8.7,8.66-8.7-8.66Z" />
+						<path fill="#2d3441" class="fill-slate-500" d="M8.7.49l18,18H9.34L0,9.16Z" />
+						<text style="font-size: 1.15rem; font-weight: 800" class="" x="48" y="16" text-anchor="start">
+							Alpine.js
+						</text>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
